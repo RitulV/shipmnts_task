@@ -1,8 +1,10 @@
+const exp = require("constants");
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const path = require("path");
 const app = express();
 require("dotenv").config();
+const emailRouter = require('./routes/email')
 
 //connection
 const PORT = process.env.PORT || 5000;
@@ -12,9 +14,9 @@ mongoose.connect(DB).then(() => {
     console.log("connection successfull to MongoDB Atlas!");
 }).catch((err) => console.log("error: ", err));
 
-// app.set("view engine", "ejs");
-// app.set("views", path.resolve("./views"));
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json());
 
-
+app.use("/api", emailRouter);
 
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));

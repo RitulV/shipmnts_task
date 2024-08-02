@@ -5,16 +5,16 @@ const emailSchema = new Schema({
     type: String,
     required: true,
   },
-  subject: {
+  eSubject: {
     type: String,
     required: true,
   },
-  body: {
-    type: stringify,
+  eBody: {
+    type: String,
     required: false,
   },
   schTime: {
-    type: Date,
+    type: String,
     required: true,
   },
   attcURL: {
