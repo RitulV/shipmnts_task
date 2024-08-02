@@ -36,7 +36,12 @@ router.post("/schedule-email", (req, res) => {
 });
 
 router.get("/scheduled-emails", async (req, res) => {
-    return res.send("This should retrieve a list of scheduled emails");
+    const emails = await Email.find({});
+    let str = '';
+    emails.forEach(email => {
+        str = str + email.emailID + " ";
+    })
+    return res.send(str);
 });
 
 router.get("/schedule-emails/:id", async (req, res) => {

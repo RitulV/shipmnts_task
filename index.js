@@ -1,4 +1,3 @@
-const exp = require("constants");
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const path = require("path");
@@ -11,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 const DB = process.env.MONGO_URL;
 
 mongoose.connect(DB).then(() => {
-    console.log("connection successfull to MongoDB Atlas!");
+    console.log("connection successfull to MongoDB!");
 }).catch((err) => console.log("error: ", err));
 
 app.use(express.urlencoded({ extended: false }))
