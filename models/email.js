@@ -23,6 +23,6 @@ const emailSchema = new Schema({
   },
 });
 
-const Email = new model("email", emailSchema);
+const Email = model("emails", emailSchema);
 
 module.exports = Email;
