@@ -1,0 +1,4 @@
+-> clone the repo into your local machine
+-> make sure you are in the root directory containing the package.json
+-> make sure node is installed in your system, and run `npm i` to install all the dependencies
+-> run `npm run dev` on your terminal to run the server
