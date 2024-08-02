@@ -4,6 +4,7 @@ const Email = require("../models/email");
 const multer = require("multer");
 const path = require("path");
 
+// for handling attachments
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.resolve(`./public/uploads`));
@@ -35,20 +36,22 @@ router.post("/schedule-email", (req, res) => {
 });
 
 router.get("/scheduled-emails", async (req, res) => {
-    const emails = await Email.find({});
-
-    return res.json(emails);
+    return res.send("This should retrieve a list of scheduled emails");
 });
 
 router.get("/schedule-emails/:id", async (req, res) => {
-    const id = req.params.id;
-    const email = await Email.findById(id);
+    try {
+        const id = req.params.id;  
+        const email = await Email.findById(id);
 
-    if (!email) {
-        res.status(404).json({ Error: "Email not found" });
+        if (!email) {
+            return res.status(404).json({ Error: "Email not found" });
+        }
+
+        return res.status(200).json(email);
+    } catch (error) {
+        return res.json({ error: "Error encountered" });
     }
-
-    res.status(200).json(email);
 });
 
 router.delete("/schedule-emails/:id", async (req, res) => {
@@ -67,6 +70,6 @@ router.delete("/schedule-emails/:id", async (req, res) => {
         return res.json({ status: "error", message: "Error encountered in deleting email" });
     }
     
-});
+});  
 
 module.exports = router;
